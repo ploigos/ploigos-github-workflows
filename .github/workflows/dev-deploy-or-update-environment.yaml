@@ -1,0 +1,14 @@
+# This Github workflow will run the Dev Deploy or Update Environment step of the Ploigos workflow.
+name: Dev Deploy or Update Environment
+
+on:
+  workflow_call:
+
+jobs:
+  dev-deploy-or-update-environment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: dev-deploy-or-update-environment
+        run: |
+          echo 'Dev Deploy or Update Environment'
