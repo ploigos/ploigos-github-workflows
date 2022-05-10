@@ -1,0 +1,13 @@
+name: Setup Workflow Step Runner
+
+on:
+  workflow_call:
+
+jobs:
+  setup-workflow-step-runner:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: setup workflow step runner
+        run: |
+          echo 'Setup Workflow Step Runner'
