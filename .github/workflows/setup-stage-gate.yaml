@@ -8,6 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: setup stage gate
+      - name: setup-stage-gate
         run: |
           echo 'Setup Stage Gate'

@@ -1,4 +1,4 @@
-name: Setup App Clone
+name: Setup PGP Keys
 
 on:
   workflow_call:
@@ -8,6 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: setup-app-clone
+      - name: setup-pgp-keys
         run: |
-          echo 'Setup App Clone'
+          echo 'Setup PGP Keys'
