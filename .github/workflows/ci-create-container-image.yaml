@@ -1,0 +1,14 @@
+# This Github workflow will run the CI Create Container Image step of the Ploigos workflow.
+name: CI Create Container Image
+
+on:
+  workflow_call:
+
+jobs:
+  ci-create-container-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: ci-create-container-image
+        run: |
+          echo 'CI Create Container Image'

@@ -1,0 +1,14 @@
+# This Github workflow will run the CI Push Container Image to Repository step of the Ploigos workflow.
+name: CI Push Container Image to Repository
+
+on:
+  workflow_call:
+
+jobs:
+  ci-push-container-image-to-repository:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: ci-push-container-image-to-repository
+        run: |
+          echo 'CI Push Container Image to Repository'
