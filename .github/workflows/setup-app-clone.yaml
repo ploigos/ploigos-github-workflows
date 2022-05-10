@@ -1,0 +1,13 @@
+name: Setup App Clone
+
+on:
+  workflow_call:
+
+jobs:
+  setup-app-clone:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: App Clone
+        run: |
+          echo 'Setup App Clone'
