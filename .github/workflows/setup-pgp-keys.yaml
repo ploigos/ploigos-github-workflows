@@ -2,6 +2,19 @@ name: Setup PGP Keys
 
 on:
   workflow_call:
+    inputs:
+      verbose:
+        required: false
+        type: string
+      image:
+        required: true
+        type: string
+      imagePullPolicy:
+        required: true
+        type: string
+      pgpKeysSecretName:
+        required: true
+        type: string
 
 jobs:
   setup-app-clone:
