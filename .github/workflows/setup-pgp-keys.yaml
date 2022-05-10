@@ -1,0 +1,13 @@
+name: Setup PGP Keys
+
+on:
+  workflow_call:
+
+jobs:
+  setup-app-clone:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: setup-pgp-keys
+        run: |
+          echo 'Setup PGP Keys'
