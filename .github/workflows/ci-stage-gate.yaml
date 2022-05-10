@@ -1,0 +1,14 @@
+# This Github workflow will run the CI Stage Gate step of the Ploigos workflow.
+name: CI Stage Gate
+
+on:
+  workflow_call:
+
+jobs:
+  ci-stage-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: ci-stage-gate
+        run: |
+          echo 'CI Stage Gate'

@@ -1,0 +1,14 @@
+# This Github workflow will run the CI Package Application step of the Ploigos workflow.
+name: CI Package Application
+
+on:
+  workflow_call:
+
+jobs:
+  ci-package-application:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: ci-package-application
+        run: |
+          echo 'CI Package Application'
