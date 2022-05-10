@@ -1,0 +1,14 @@
+# This Github workflow will run the Generate Metadata step of the Ploigos workflow.
+name: Generate Metadata
+
+on:
+  workflow_call:
+
+jobs:
+  generate-metadata:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: echo generate metada
+        run: |
+          echo 'Generate Metadata'
