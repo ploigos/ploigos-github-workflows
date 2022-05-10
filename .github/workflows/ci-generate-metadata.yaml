@@ -34,3 +34,4 @@ jobs:
       - name: ci-generate-metadata
         run: |
           echo 'Generate Metadata'
+          echo ${{ inputs.stepName }}
