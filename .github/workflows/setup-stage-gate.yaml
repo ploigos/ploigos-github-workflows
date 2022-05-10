@@ -1,0 +1,13 @@
+name: Setup Stage Gate
+
+on:
+  workflow_call:
+
+jobs:
+  generate-metadata:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: setup stage gate
+        run: |
+          echo 'Setup Stage Gate'
