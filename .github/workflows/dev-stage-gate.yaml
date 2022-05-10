@@ -1,0 +1,14 @@
+# This Github workflow will run the Dev Stage Gate step of the Ploigos workflow.
+name: Dev Stage Gate
+
+on:
+  workflow_call:
+
+jobs:
+  dev-stage-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: dev-stage-gate
+        run: |
+          echo 'Dev Stage Gate'

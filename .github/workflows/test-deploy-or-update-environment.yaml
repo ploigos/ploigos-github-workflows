@@ -1,0 +1,14 @@
+# This Github workflow will run the Test Deploy or Update Environment step of the Ploigos workflow.
+name: Test Deploy or Update Environment
+
+on:
+  workflow_call:
+
+jobs:
+  test-deploy-or-update-environment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: test-deploy-or-update-environment
+        run: |
+          echo 'Test Deploy or Update Environment'

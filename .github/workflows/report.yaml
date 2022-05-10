@@ -1,0 +1,14 @@
+# This Github workflow will run the Report step of the Ploigos workflow.
+name: Report
+
+on:
+  workflow_call:
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: report
+        run: |
+          echo 'Report'

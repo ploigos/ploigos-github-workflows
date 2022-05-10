@@ -1,0 +1,14 @@
+# This Github workflow will run the Test Stage Gate step of the Ploigos workflow.
+name: Test Stage Gate
+
+on:
+  workflow_call:
+
+jobs:
+  test-stage-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: test-stage-gate
+        run: |
+          echo 'Test Stage Gate'
