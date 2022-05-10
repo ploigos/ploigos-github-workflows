@@ -9,6 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: echo generate metada
+      - name: generate-metadata
         run: |
           echo 'Generate Metadata'
