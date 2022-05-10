@@ -5,10 +5,10 @@ on:
   workflow_call:
 
 jobs:
-  generate-metadata:
+  ci-generate-metadata:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: generate-metadata
+      - name: ci-generate-metadata
         run: |
           echo 'Generate Metadata'
