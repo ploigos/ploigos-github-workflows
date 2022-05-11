@@ -8,9 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: quay.io/ploigos/ploigos-base:latest.ubi8
-    steps:
-      - name: setup-app-clone
-        uses: ploigos/ploigos-github-workflows/.github/workflows/setup-app-clone.yaml@main
+    uses: ploigos/ploigos-github-workflows/.github/workflows/setup-app-clone.yaml@main
 #      - name: setup-workflow-step-runner
 #        run: |
 #          psr --help
