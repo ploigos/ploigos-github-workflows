@@ -33,7 +33,7 @@ jobs:
       image: quay.io/ploigos/ploigos-base:latest.ubi8
     steps:
       - name: setup-app-clone
-        uses: ploigos/ploigos-github-action@psr-action
+#        uses: ploigos/ploigos-github-action@psr-action
         with:
           entrypoint: psr --help
 #          stepName: "app-clone"
