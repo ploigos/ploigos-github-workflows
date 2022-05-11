@@ -27,9 +27,9 @@ on:
         type: string
 
 jobs:
-  ci-generate-metadata:
+  continous-integration:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: report
+      - name: ci-generate-metadata
         uses: ploigos/ploigos-github-action@psr-action
