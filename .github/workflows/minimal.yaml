@@ -28,19 +28,16 @@ on:
 
 jobs:
   setup:
-    runs-on: ubuntu-latest
+#    runs-on: ubuntu-latest
     container:
       image: quay.io/ploigos/ploigos-base:latest.ubi8
     steps:
       - name: setup-app-clone
-#        uses: ploigos/ploigos-github-action@psr-action
         run: |
           psr --help
-#          stepName: "app-clone"
-#      - name: setup-workflow-step-runner
-#        uses: ploigos/ploigos-github-action@psr-action
-#        with:
-#          stepName: "setup-workflow-step-runner"
+      - name: setup-workflow-step-runner
+        run: |
+          psr --help
   continous-integration:
     needs: setup
     runs-on: ubuntu-latest
