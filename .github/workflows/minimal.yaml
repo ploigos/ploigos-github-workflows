@@ -27,6 +27,17 @@ on:
         type: string
 
 jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: setup-app-clone
+        uses: ploigos/ploigos-github-action@psr-action
+        with:
+          stepName: "app-clone"
+      - name: setup-workflow-step-runner
+        uses: ploigos/ploigos-github-action@psr-action
+        with:
+          stepName: "setup-workflow-step-runner"
   continous-integration:
     runs-on: ubuntu-latest
     steps:
