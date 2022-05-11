@@ -50,10 +50,10 @@ jobs:
       - name: ci-generate-metadata
         run: |
           psr --help
-      - name: ci-create-container-image
+      - name: ci-package-application
         run: |
           psr --help
-      - name: ci-package-application
+      - name: ci-create-container-image
         run: |
           psr --help
       - name: ci-push-container-image-to-repository
