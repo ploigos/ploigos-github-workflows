@@ -41,21 +41,18 @@ jobs:
   continous-integration:
     needs: setup
     runs-on: ubuntu-latest
+    container:
+      image: quay.io/ploigos/ploigos-base:latest.ubi8
     steps:
-#      - uses: actions/checkout@v3
       - name: ci-generate-metadata
-        uses: ploigos/ploigos-github-action@psr-action
-        with:
-          stepName: "generate-metadata"
+        run: |
+          psr --help
       - name: ci-create-container-image
-        uses: ploigos/ploigos-github-action@psr-action
-        with:
-          stepName: "create-container-image"
+        run: |
+          psr --help
       - name: ci-package-application
-        uses: ploigos/ploigos-github-action@psr-action
-        with:
-          stepName: "package-application"
+        run: |
+          psr --help
       - name: ci-push-container-image-to-repository
-        uses: ploigos/ploigos-github-action@psr-action
-        with:
-          stepName: "push-container-image-to-repository"
+        run: |
+          psr --help
