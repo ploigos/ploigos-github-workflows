@@ -37,7 +37,8 @@ jobs:
       - name: setup-workflow-step-runner
         uses: ploigos/ploigos-github-action@psr-action
         with:
-          stepName: "setup-workflow-step-runner"
+          entrypoint: /bin/psr
+          args: '--help'
   continous-integration:
     runs-on: ubuntu-latest
     steps:
