@@ -1,0 +1,87 @@
+# This Github workflow will run the Report step of the Ploigos workflow.
+name: Minimal Workflow
+
+on:
+  workflow_call:
+    inputs:
+      verbose:
+        required: false
+        type: string
+      image:
+        required: true
+        type: string
+      imagePullPolicy:
+        required: true
+        type: string
+      stepRunnerPackageName:
+        required: true
+        type: string
+      venvPath:
+        required: true
+        type: string
+      stepName:
+        required: true
+        type: string
+      stepRunnerConfigDir:
+        required: true
+        type: string
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    container:
+      image: quay.io/ploigos/ploigos-base:latest.ubi8
+    steps:
+      - name: setup-app-clone
+        run: |
+          psr --help
+      - name: setup-workflow-step-runner
+        run: |
+          psr --help
+      - name: setup-pgp-keys
+        run: |
+          psr --help
+  continous-integration:
+    needs: setup
+    runs-on: ubuntu-latest
+    container:
+      image: quay.io/ploigos/ploigos-base:latest.ubi8
+    steps:
+      - name: ci-generate-metadata
+        run: |
+          psr --help
+      - name: ci-package-application
+        run: |
+          psr --help
+      - name: ci-create-container-image
+        run: |
+          psr --help
+      - name: ci-push-container-image-to-repository
+        run: |
+          psr --help
+  dev:
+    needs: continous-integration
+    runs-on: ubuntu-latest
+    container:
+      image: quay.io/ploigos/ploigos-base:latest.ubi8
+    steps:
+      - name: deploy-or-update-environment
+        run: |
+          psr --help
+  test:
+    needs: dev
+    runs-on: ubuntu-latest
+    container:
+      image: quay.io/ploigos/ploigos-base:latest.ubi8
+    steps:
+      - name: deploy-or-update-environment
+        run: |
+          psr --help
+  report:
+    needs: test
+    runs-on: ubuntu-latest
+    container:
+      image: quay.io/ploigos/ploigos-base:latest.ubi8
+    steps:
+      - name: report
+        run: |
+          psr --help
