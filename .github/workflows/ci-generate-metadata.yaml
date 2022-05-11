@@ -32,4 +32,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: use-psr
-        uses: gfulton-redhat/hello-world@psr
+        uses: ploigos/ploigos-github-action@psr-action
