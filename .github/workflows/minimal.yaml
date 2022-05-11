@@ -37,12 +37,12 @@ jobs:
       - name: setup-workflow-step-runner
         uses: ploigos/ploigos-github-action@psr-action
         with:
-          entrypoint: /bin/psr
-          args: '--help'
+          stepName: "setup-workflow-step-runner"
   continous-integration:
+    needs: setup
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+#      - uses: actions/checkout@v3
       - name: ci-generate-metadata
         uses: ploigos/ploigos-github-action@psr-action
         with:
