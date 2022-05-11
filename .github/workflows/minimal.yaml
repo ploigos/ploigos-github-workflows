@@ -33,3 +33,9 @@ jobs:
       - uses: actions/checkout@v3
       - name: ci-generate-metadata
         uses: ploigos/ploigos-github-action@psr-action
+        with:
+          - stepName: "generate-metadata"
+      - name: ci-create-container-image
+        uses: ploigos/ploigos-github-action@psr-action
+        with:
+          - stepName: "create-container-image"
