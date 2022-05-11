@@ -38,6 +38,9 @@ jobs:
       - name: setup-workflow-step-runner
         run: |
           psr --help
+      - name: setup-pgp-keys
+        run: |
+          psr --help
   continous-integration:
     needs: setup
     runs-on: ubuntu-latest
@@ -54,5 +57,32 @@ jobs:
         run: |
           psr --help
       - name: ci-push-container-image-to-repository
+        run: |
+          psr --help
+  dev:
+    needs: continous-integration
+    runs-on: ubuntu-latest
+    container:
+      image: quay.io/ploigos/ploigos-base:latest.ubi8
+    steps:
+      - name: deploy-or-update-environment
+        run: |
+          psr --help
+  test:
+    needs: dev
+    runs-on: ubuntu-latest
+    container:
+      image: quay.io/ploigos/ploigos-base:latest.ubi8
+    steps:
+      - name: deploy-or-update-environment
+        run: |
+          psr --help
+  report:
+    needs: test
+    runs-on: ubuntu-latest
+    container:
+      image: quay.io/ploigos/ploigos-base:latest.ubi8
+    steps:
+      - name: report
         run: |
           psr --help
