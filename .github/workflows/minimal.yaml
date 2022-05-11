@@ -35,7 +35,15 @@ jobs:
         uses: ploigos/ploigos-github-action@psr-action
         with:
           stepName: "generate-metadata"
-#      - name: ci-create-container-image
-#        uses: ploigos/ploigos-github-action@psr-action
-#        with:
-#          - stepName: "create-container-image"
+      - name: ci-create-container-image
+        uses: ploigos/ploigos-github-action@psr-action
+        with:
+          stepName: "create-container-image"
+      - name: ci-package-application
+        uses: ploigos/ploigos-github-action@psr-action
+        with:
+          stepName: "package-application"
+      - name: ci-push-container-image-to-repository
+        uses: ploigos/ploigos-github-action@psr-action
+        with:
+          stepName: "push-container-image-to-repository"
