@@ -34,10 +34,11 @@ jobs:
     steps:
       - name: setup-app-clone
         run: |
-          result=$(psr --help)
-          echo "::set-output name=result::$result"
+          RESULT=$(psr --help)
+          echo "::set-output name=RESULT::$RESULT"
       - name: setup-workflow-step-runner
         run: |
+          echo "The output from setup-app-clone ${{ steps.setup-app-clone.outputs.RESULT }}"
           psr --help
       - name: setup-pgp-keys
         run: |
