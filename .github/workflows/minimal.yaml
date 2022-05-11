@@ -28,7 +28,7 @@ on:
 
 jobs:
   setup:
-#    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
     container:
       image: quay.io/ploigos/ploigos-base:latest.ubi8
     steps:
