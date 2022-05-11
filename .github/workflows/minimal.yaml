@@ -34,8 +34,8 @@ jobs:
     steps:
       - name: setup-app-clone
 #        uses: ploigos/ploigos-github-action@psr-action
-        with:
-          entrypoint: psr --help
+        run: |
+          psr --help
 #          stepName: "app-clone"
 #      - name: setup-workflow-step-runner
 #        uses: ploigos/ploigos-github-action@psr-action
