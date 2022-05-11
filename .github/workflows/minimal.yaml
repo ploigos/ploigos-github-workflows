@@ -39,7 +39,6 @@ jobs:
       - name: setup-workflow-step-runner
         run: |
           echo "The output from setup-app-clone ${{ steps.setup-app-clone.outputs.RESULT }}"
-          psr --help
       - name: setup-pgp-keys
         run: |
           psr --help
