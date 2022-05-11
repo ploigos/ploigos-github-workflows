@@ -34,7 +34,8 @@ jobs:
     steps:
       - name: setup-app-clone
         run: |
-          psr --help
+          result=$(psr --help)
+          echo "::set-output name=result::$result"
       - name: setup-workflow-step-runner
         run: |
           psr --help
