@@ -1,4 +1,5 @@
 name: "Setup App Clone"
+description: "My Action"
 runs:
   using: "composite"
   steps:
