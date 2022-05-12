@@ -31,6 +31,7 @@ jobs:
     container:
       image: quay.io/ploigos/ploigos-base:latest.ubi8
     steps:
+      - uses: actions/checkout@v3
       - name: setup-app-clone
         uses: ./.github/actions/setup-app-clone@composites
 #        run: |
