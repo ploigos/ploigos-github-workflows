@@ -1,0 +1,8 @@
+name: "Report"
+description: "My Action"
+runs:
+  using: "composite"
+  steps:
+    - name: report
+      run: psr --help
+      shell: bash

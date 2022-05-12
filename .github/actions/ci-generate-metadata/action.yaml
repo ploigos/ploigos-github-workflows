@@ -1,0 +1,8 @@
+name: "Generate Metadata"
+description: ""
+runs:
+  using: "composite"
+  steps:
+    - name: generate-metadata
+      run: psr --help
+      shell: bash

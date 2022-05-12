@@ -1,0 +1,8 @@
+name: "Package Application"
+description: "My Action"
+runs:
+  using: "composite"
+  steps:
+    - name: package-application
+      run: psr --help
+      shell: bash

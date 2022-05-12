@@ -1,0 +1,8 @@
+name: "Setup PGP Keys"
+description: "My Action"
+runs:
+  using: "composite"
+  steps:
+    - name: setup-pgp-keys
+      run: psr --help
+      shell: bash

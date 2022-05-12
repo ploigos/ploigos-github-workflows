@@ -1,0 +1,8 @@
+name: "Setup Workflow Step Runner"
+description: "My Action"
+runs:
+  using: "composite"
+  steps:
+    - name: setup-workflow-step-runner
+      run: psr --help
+      shell: bash

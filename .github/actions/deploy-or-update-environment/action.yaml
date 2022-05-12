@@ -1,0 +1,8 @@
+name: "Deploy Or Update Environment"
+description: "My Action"
+runs:
+  using: "composite"
+  steps:
+    - name: deploy-or-update-environment
+      run: psr --help
+      shell: bash

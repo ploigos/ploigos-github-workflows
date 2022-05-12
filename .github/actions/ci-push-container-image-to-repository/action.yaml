@@ -1,0 +1,8 @@
+name: "Push Container Image To Repository"
+description: "My Action"
+runs:
+  using: "composite"
+  steps:
+    - name: push-container-image-to-repository
+      run: psr --help
+      shell: bash
