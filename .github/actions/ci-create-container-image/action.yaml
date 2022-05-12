@@ -1,0 +1,8 @@
+name: "Create Container Image"
+description: ""
+runs:
+  using: "composite"
+  steps:
+    - name: create-container-image
+      run: psr --help
+      shell: bash

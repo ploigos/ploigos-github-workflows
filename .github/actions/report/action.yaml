@@ -1,8 +1,8 @@
-name: "App Clone"
+name: "Report"
 description: "My Action"
 runs:
   using: "composite"
   steps:
-    - name: app-clone
+    - name: report
       run: psr --help
       shell: bash

@@ -34,56 +34,49 @@ jobs:
       - uses: actions/checkout@v3
       - name: setup-app-clone
         uses: ploigos/ploigos-github-workflows/.github/actions/setup-app-clone@composites
-#        run: |
-#          psr --help
       - name: setup-workflow-step-runner
-        run: |
-          psr --help
+        uses: ploigos/ploigos-github-workflows/.github/actions/setup-workflow-step-runner@composites
       - name: setup-pgp-keys
-        run: |
-          psr --help
+        uses: ploigos/ploigos-github-workflows/.github/actions/setup-pgp-keys@composites
   continous-integration:
     needs: setup
     runs-on: ubuntu-latest
     container:
       image: quay.io/ploigos/ploigos-base:latest.ubi8
     steps:
+      - uses: actions/checkout@v3
       - name: ci-generate-metadata
-        run: |
-          psr --help
+        uses: ploigos/ploigos-github-workflows/.github/actions/ci-generate-metadata@composites
       - name: ci-package-application
-        run: |
-          psr --help
+        uses: ploigos/ploigos-github-workflows/.github/actions/ci-package-application@composites
       - name: ci-create-container-image
-        run: |
-          psr --help
+        uses: ploigos/ploigos-github-workflows/.github/actions/ci-create-container-image@composites
       - name: ci-push-container-image-to-repository
-        run: |
-          psr --help
+        uses: ploigos/ploigos-github-workflows/.github/actions/ci-push-container-image-to-repository@composites
   dev:
     needs: continous-integration
     runs-on: ubuntu-latest
     container:
       image: quay.io/ploigos/ploigos-base:latest.ubi8
     steps:
+      - uses: actions/checkout@v3
       - name: deploy-or-update-environment
-        run: |
-          psr --help
+        uses: ploigos/ploigos-github-workflows/.github/actions/deploy-or-update-environment@composites
   test:
     needs: dev
     runs-on: ubuntu-latest
     container:
       image: quay.io/ploigos/ploigos-base:latest.ubi8
     steps:
+      - uses: actions/checkout@v3
       - name: deploy-or-update-environment
-        run: |
-          psr --help
+        uses: ploigos/ploigos-github-workflows/.github/actions/deploy-or-update-environment@composites
   report:
     needs: test
     runs-on: ubuntu-latest
     container:
       image: quay.io/ploigos/ploigos-base:latest.ubi8
     steps:
+      - uses: actions/checkout@v3
       - name: report
-        run: |
-          psr --help
+        uses: ploigos/ploigos-github-workflows/.github/actions/report@composites

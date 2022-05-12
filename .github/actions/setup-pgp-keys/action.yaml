@@ -1,8 +1,8 @@
-name: "App Clone"
+name: "Setup PGP Keys"
 description: "My Action"
 runs:
   using: "composite"
   steps:
-    - name: app-clone
+    - name: setup-pgp-keys
       run: psr --help
       shell: bash
