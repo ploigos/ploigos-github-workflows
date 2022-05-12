@@ -33,7 +33,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: setup-app-clone
-        uses: ./.github/actions/setup-app-clone
+        uses: ploigos/ploigos-github-workflows/.github/actions/setup-app-clone@composites
 #        run: |
 #          psr --help
       - name: setup-workflow-step-runner
