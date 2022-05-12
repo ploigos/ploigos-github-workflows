@@ -33,11 +33,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: setup-app-clone
-        uses: ploigos/ploigos-github-workflows/.github/actions/setup-app-clone@composites
+        uses: ploigos/ploigos-github-workflows/.github/actions/setup-app-clone@main
       - name: setup-workflow-step-runner
-        uses: ploigos/ploigos-github-workflows/.github/actions/setup-workflow-step-runner@composites
+        uses: ploigos/ploigos-github-workflows/.github/actions/setup-workflow-step-runner@main
       - name: setup-pgp-keys
-        uses: ploigos/ploigos-github-workflows/.github/actions/setup-pgp-keys@composites
+        uses: ploigos/ploigos-github-workflows/.github/actions/setup-pgp-keys@main
   continous-integration:
     needs: setup
     runs-on: ubuntu-latest
@@ -46,13 +46,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: ci-generate-metadata
-        uses: ploigos/ploigos-github-workflows/.github/actions/ci-generate-metadata@composites
+        uses: ploigos/ploigos-github-workflows/.github/actions/ci-generate-metadata@main
       - name: ci-package-application
-        uses: ploigos/ploigos-github-workflows/.github/actions/ci-package-application@composites
+        uses: ploigos/ploigos-github-workflows/.github/actions/ci-package-application@main
       - name: ci-create-container-image
-        uses: ploigos/ploigos-github-workflows/.github/actions/ci-create-container-image@composites
+        uses: ploigos/ploigos-github-workflows/.github/actions/ci-create-container-image@main
       - name: ci-push-container-image-to-repository
-        uses: ploigos/ploigos-github-workflows/.github/actions/ci-push-container-image-to-repository@composites
+        uses: ploigos/ploigos-github-workflows/.github/actions/ci-push-container-image-to-repository@main
   dev:
     needs: continous-integration
     runs-on: ubuntu-latest
@@ -61,7 +61,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: deploy-or-update-environment
-        uses: ploigos/ploigos-github-workflows/.github/actions/deploy-or-update-environment@composites
+        uses: ploigos/ploigos-github-workflows/.github/actions/deploy-or-update-environment@main
   test:
     needs: dev
     runs-on: ubuntu-latest
@@ -70,7 +70,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: deploy-or-update-environment
-        uses: ploigos/ploigos-github-workflows/.github/actions/deploy-or-update-environment@composites
+        uses: ploigos/ploigos-github-workflows/.github/actions/deploy-or-update-environment@main
   report:
     needs: test
     runs-on: ubuntu-latest
@@ -79,4 +79,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: report
-        uses: ploigos/ploigos-github-workflows/.github/actions/report@composites
+        uses: ploigos/ploigos-github-workflows/.github/actions/report@main
