@@ -27,7 +27,7 @@ on:
         type: string
 jobs:
   setup:
-    runs-on: ubuntu-latest
+    runs-on: [ self-hosted ]
     container:
       image: quay.io/ploigos/ploigos-base:latest.ubi8
     steps:
@@ -40,7 +40,7 @@ jobs:
         uses: ploigos/ploigos-github-workflows/.github/actions/setup-pgp-keys@main
   continous-integration:
     needs: setup
-    runs-on: ubuntu-latest
+    runs-on: [ self-hosted ]
     container:
       image: quay.io/ploigos/ploigos-base:latest.ubi8
     steps:
@@ -55,7 +55,7 @@ jobs:
         uses: ploigos/ploigos-github-workflows/.github/actions/ci-push-container-image-to-repository@main
   dev:
     needs: continous-integration
-    runs-on: ubuntu-latest
+    runs-on: [ self-hosted ]
     container:
       image: quay.io/ploigos/ploigos-base:latest.ubi8
     steps:
@@ -64,7 +64,7 @@ jobs:
         uses: ploigos/ploigos-github-workflows/.github/actions/deploy-or-update-environment@main
   test:
     needs: dev
-    runs-on: ubuntu-latest
+    runs-on: [ self-hosted ]
     container:
       image: quay.io/ploigos/ploigos-base:latest.ubi8
     steps:
@@ -73,7 +73,7 @@ jobs:
         uses: ploigos/ploigos-github-workflows/.github/actions/deploy-or-update-environment@main
   report:
     needs: test
-    runs-on: ubuntu-latest
+    runs-on: [ self-hosted ]
     container:
       image: quay.io/ploigos/ploigos-base:latest.ubi8
     steps:
