@@ -2,5 +2,6 @@ name: "Setup App Clone"
 runs:
   using: "composite"
   steps:
-  - name: setup-app-clone
-    run: psr --help
+    - uses: actions/checkout@v3
+    - name: setup-app-clone
+      run: psr --help
