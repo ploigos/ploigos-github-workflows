@@ -1,5 +1,18 @@
 name: "Setup PGP Keys"
 description: "My Action"
+inputs:
+  verbose:
+    required: false
+    type: string
+  image:
+    required: true
+    type: string
+  imagePullPolicy:
+    required: true
+    type: string
+  pgpKeysSecretName:
+    required: true
+    type: string
 runs:
   using: "composite"
   steps:
