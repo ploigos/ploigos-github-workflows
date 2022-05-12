@@ -1,0 +1,6 @@
+name: "Setup App Clone"
+runs:
+  using: "composite"
+  steps:
+  - name: setup-app-clone
+    run: psr --help
