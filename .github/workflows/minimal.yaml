@@ -32,7 +32,7 @@ jobs:
       image: quay.io/ploigos/ploigos-base:latest.ubi8
     steps:
       - uses: actions/checkout@v3
-      - id: setup-app-clone
+      - name: setup-app-clone
         uses: ploigos/ploigos-github-workflows/.github/actions/setup-app-clone@composites
 #        run: |
 #          psr --help
