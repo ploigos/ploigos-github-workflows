@@ -5,3 +5,4 @@ runs:
   steps:
     - name: setup-app-clone
       run: psr --help
+      shell: bash
