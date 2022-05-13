@@ -3,9 +3,18 @@ name: Minimal Workflow
 
 on:
   workflow_call:
+    inputs:
+      verbose:
+        required: false
+        default: true
+        type: string
+      stepRunnerConfigDir:
+        required: false
+        default: .
+        type: string
 jobs:
   setup:
-    runs-on: [ self-hosted ]
+    runs-on: ubuntu-latest
     container:
       image: quay.io/ploigos/ploigos-base:latest.ubi8
     steps:
@@ -18,7 +27,7 @@ jobs:
         uses: ploigos/ploigos-github-workflows/.github/actions/setup-pgp-keys@main
   continous-integration:
     needs: setup
-    runs-on: [ self-hosted ]
+    runs-on: ubuntu-latest
     container:
       image: quay.io/ploigos/ploigos-base:latest.ubi8
     steps:
@@ -33,7 +42,7 @@ jobs:
         uses: ploigos/ploigos-github-workflows/.github/actions/ci-push-container-image-to-repository@main
   dev:
     needs: continous-integration
-    runs-on: [ self-hosted ]
+    runs-on: ubuntu-latest
     container:
       image: quay.io/ploigos/ploigos-base:latest.ubi8
     steps:
@@ -44,7 +53,7 @@ jobs:
           environment: 'dev'
   test:
     needs: dev
-    runs-on: [ self-hosted ]
+    runs-on: ubuntu-latest
     container:
       image: quay.io/ploigos/ploigos-base:latest.ubi8
     steps:
@@ -55,7 +64,7 @@ jobs:
           environment: 'test'
   report:
     needs: test
-    runs-on: [ self-hosted ]
+    runs-on: ubuntu-latest
     container:
       image: quay.io/ploigos/ploigos-base:latest.ubi8
     steps:
