@@ -20,12 +20,6 @@ jobs:
       - name: setup-app-clone
         uses: actions/checkout@v3
 
-      - name: setup-python
-        uses: actions/setup-python@v3
-        with:
-          python-version: '3.9.12'
-          architecture: 'x64'
-
       - name: setup-workflow-step-runner
         run: python -m pip install --upgrade git+https://github.com/ploigos/ploigos-step-runner.git@${{ inputs.psrBranch }}
 
