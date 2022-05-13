@@ -1,5 +1,33 @@
 name: "Setup Workflow Step Runner"
 description: "My Action"
+inputs:
+  verbose:
+    required: false
+    type: string
+  image:
+    required: true
+    type: string
+  imagePullPolicy:
+    required: true
+    type: string
+  stepRunnerPackageName:
+    required: true
+    type: string
+  stepRunnerUpdateLibrary:
+    required: true
+    type: string
+  stepRunnerLibSourceUrl:
+    required: true
+    type: string
+  stepRunnerLibIndexUrl:
+    required: true
+    type: string
+  stepRunnerLibExtraIndexUrl:
+    required: true
+    type: string
+  stepRunnerLibVersion:
+    required: true
+    type: string
 runs:
   using: "composite"
   steps:
