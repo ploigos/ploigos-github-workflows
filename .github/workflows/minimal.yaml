@@ -9,7 +9,7 @@ on:
         default: true
         type: string
       stepRunnerConfigDir:
-        required: true
+        required: false
         default: .
         type: string
 jobs:
