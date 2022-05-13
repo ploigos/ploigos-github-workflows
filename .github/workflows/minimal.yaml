@@ -20,7 +20,7 @@ jobs:
       - name: setup-app-clone
         uses: actions/checkout@v3
         with:
-          python-version: '3.8'
+          python-version: '3.9.12'
           architecture: 'x64'
 
       - name: setup-python
