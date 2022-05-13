@@ -1,5 +1,27 @@
 name: "Generate Metadata"
 description: ""
+inputs:
+  verbose:
+    required: false
+    type: string
+  image:
+    required: true
+    type: string
+  imagePullPolicy:
+    required: true
+    type: string
+  stepRunnerPackageName:
+    required: true
+    type: string
+  venvPath:
+    required: true
+    type: string
+  stepName:
+    required: true
+    type: string
+  stepRunnerConfigDir:
+    required: true
+    type: string
 runs:
   using: "composite"
   steps:
