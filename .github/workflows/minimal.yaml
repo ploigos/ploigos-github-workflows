@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: setup-workflow-step-runner
-        run: python3 -m pip install --upgrade git+https://github.com/ploigos/ploigos-step-runner.git@${{ inputs.psrBranch }}
+        run: pip3 install --upgrade git+https://github.com/ploigos/ploigos-step-runner.git@${{ inputs.psrBranch }}
 
       - name: ci-generate-metadata
         run: psr --help
