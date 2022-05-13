@@ -14,7 +14,7 @@ on:
         type: string
 jobs:
   continuous-integration:
-    runs-on: [self-hosted]
+    runs-on: [self-hosted, python]
     steps:
 
       - name: setup-app-clone
