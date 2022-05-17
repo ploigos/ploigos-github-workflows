@@ -27,7 +27,7 @@ jobs:
         run: psr -s generate-metadata -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml
 
       - name: ci-package-application
-        run: psr --help
+        run: psr -s package -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml
 
       - name: ci-create-container-image
         run: psr --help
