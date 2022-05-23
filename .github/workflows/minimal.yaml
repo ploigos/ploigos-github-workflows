@@ -33,4 +33,4 @@ jobs:
         run: psr -s create-container-image -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/generated-psr
 
       - name: ci-push-container-image-to-repository
-        run: psr --help
+        run: psr -s push-container-image -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/generated-psr
