@@ -4,6 +4,10 @@ name: Minimal Workflow
 on:
   workflow_call:
     inputs:
+      ArgoCDSecret:
+        required: true
+        default: ${{ secrets.ArgoCDSecret }}
+        type: string
       verbose:
         required: false
         default: true
@@ -36,4 +40,4 @@ jobs:
         run: psr -s push-container-image -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/generated-psr --step-config container-image-push-repository=aagreen/java-github-example
 
       - name: deploy-or-update-environment-test
-        run: psr -s deploy -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/generated-psr --environment TEST --step-config argocd-password=${{ secrets.ArgoCDSecret }}
+        run: psr -s deploy -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/generated-psr --environment TEST --step-config argocd-password=${{ inputs.ArgoCDSecret }}
