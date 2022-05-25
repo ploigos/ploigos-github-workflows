@@ -40,4 +40,4 @@ jobs:
         run: psr -s push-container-image -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/generated-psr --step-config container-image-push-repository=aagreen/java-github-example
 
       - name: deploy-or-update-environment-test
-        run: psr -s deploy -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/generated-psr --environment TEST --step-config argocd-password=${{ secrets.ARGOCDSECRET }}
+        run: psr -s deploy -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/generated-psr --environment TEST --step-config argocd-password=${{ secrets.ARGOCDSECRET }} git-username=${{ secrets.GITUSER }} git-password=${{ secrets.GITPASS }}
