@@ -11,9 +11,9 @@ This repository houses the Ploigos CI/CD workflows defined within a Github Actio
      step-runner-config:
 
      global-defaults:
-       organization: ploigos << REPLACE THIS VALUE
-       service-name: petclinic << REPLACE THIS VALUE
-       application-name: petclinic << REPLACE THIS VALUE
+       organization: ploigos #REPLACE THIS VALUE
+       service-name: petclinic #REPLACE THIS VALUE
+       application-name: petclinic #REPLACE THIS VALUE
 
      generate-metadata:
      - implementer: Maven
@@ -29,19 +29,19 @@ This repository houses the Ploigos CI/CD workflows defined within a Github Actio
      push-container-image:
      - implementer: Skopeo
        config:
-         destination-url: quay.io << REPLACE THIS VALUE
-         container-image-push-repository: aagreen/spring-petclinic << REPLACE THIS VALUE
+         destination-url: quay.io #REPLACE THIS VALUE
+         container-image-push-repository: aagreen/spring-petclinic #REPLACE THIS VALUE
 
      deploy:
      - implementer: ArgoCDDeploy
        config:
-         argocd-api: openshift-gitops-server-openshift-gitops.apps.swfocp.sandbox204.opentlc.com << REPLACE THIS VALUE
+         argocd-api: openshift-gitops-server-openshift-gitops.apps.swfocp.sandbox204.opentlc.com #REPLACE THIS VALUE
          argocd-username: admin
          argocd-skip-tls: True
-         deployment-config-repo: https://github.com/ploigos/spring-petclinic-ops.git << REPLACE THIS VALUE
-         deployment-config-helm-chart-path: charts/spring-petclinic-deploy << REPLACE THIS VALUE
+         deployment-config-repo: https://github.com/ploigos/spring-petclinic-ops.git #REPLACE THIS VALUE
+         deployment-config-helm-chart-path: charts/spring-petclinic-deploy #REPLACE THIS VALUE
          deployment-config-helm-chart-values-file-image-tag-yq-path: 'image.tag'
-         git-email: 'ploigos+it@redhat.com' << REPLACE THIS VALUE
+         git-email: 'ploigos+it@redhat.com' #REPLACE THIS VALUE
          argocd-sync-timeout-seconds: 130
          force-push-tags: true
        environment-config:
@@ -59,7 +59,7 @@ This repository houses the Ploigos CI/CD workflows defined within a Github Actio
    * Copy example [main.yaml](https://github.com/ploigos/spring-petclinic/blob/main/.github/workflows/main.yaml) to your application repository's .github/workflows/ directory and update values according to your application. At minimum, the following fields should be updated -
      ```yaml
      ---
-     name: spring-petclinic << REPLACE THIS VALUE
+     name: spring-petclinic #REPLACE THIS VALUE
 
      on:
        push:
