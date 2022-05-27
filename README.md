@@ -1,6 +1,6 @@
 # Ploigos GitHub Workflows
 
-This repository houses the Ploigos CI/CD workflows defined within a Github Actions [reusable workflow](https://docs.github.com/en/actions/using-workflows/reusing-workflows). Documentation regarding Ploigos can be found at https://ploigos.github.io/ploigos-docs.
+This repository imeplements the [standard Ploigos CI/CD workflows](https://ploigos.github.io/ploigos-docs/#_cicd_process_workflow) using [Github Actions](https://docs.github.com/en/actions). Each standard workflow is impelemented as a [GitHub Actions reusable workflow](https://docs.github.com/en/actions/using-workflows/reusing-workflows). For more information about Ploigos, see the [Ploigos documentation](https://ploigos.github.io/ploigos-docs).
 
 ## How to Use this workflow in your Application
 
