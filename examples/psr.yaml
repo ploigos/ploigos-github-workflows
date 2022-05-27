@@ -1,0 +1,43 @@
+---
+step-runner-config:
+
+  global-defaults:
+    organization: REPLACE_organizationname
+    service-name: REPLACE_servicename
+    application-name: REPLACE_applicationname
+
+  generate-metadata:
+  - implementer: Maven
+  - implementer: Git
+  - implementer: SemanticVersion
+
+  package:
+  - implementer: MavenPackage
+
+  create-container-image:
+  - implementer: Buildah
+
+  push-container-image:
+  - implementer: Skopeo
+    config:
+      destination-url: quay.io
+      #only needed if wanting to push to a different location than organization/application-name/service-name
+      #container-image-push-repository: REPLACE_registrylocation
+
+  deploy:
+  - implementer: ArgoCDDeploy
+    config:
+      argocd-api: REPLACE_argocdapi
+      argocd-username: admin
+      argocd-skip-tls: True
+      deployment-config-repo: REPLACE_applicationgitopsrepo
+      deployment-config-helm-chart-path: REPLACE_applicationgitopsdir
+      deployment-config-helm-chart-values-file-image-tag-yq-path: 'image.tag'
+      git-email: 'REPLACE_email'
+      argocd-sync-timeout-seconds: 130
+      force-push-tags: true
+    environment-config:
+      DEV:
+        deployment-config-helm-chart-environment-values-file: values-DEV.yaml
+      TEST:
+        deployment-config-helm-chart-environment-values-file: values-TEST.yaml
