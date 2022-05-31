@@ -40,5 +40,5 @@ jobs:
       - name: deploy-or-update-environment-dev
         run: psr -s deploy -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/generated-psr --environment DEV --step-config argocd-password=${{ secrets.ARGOCDSECRET }} git-username=${{ secrets.GITUSER }} git-password=${{ secrets.GITPASS }}
 
-      - name: deploy-or-update-environment-test
-        run: psr -s deploy -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/generated-psr --environment TEST --step-config argocd-password=${{ secrets.ARGOCDSECRET }} git-username=${{ secrets.GITUSER }} git-password=${{ secrets.GITPASS }}
+#      - name: deploy-or-update-environment-test
+#        run: psr -s deploy -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/generated-psr --environment TEST --step-config argocd-password=${{ secrets.ARGOCDSECRET }} git-username=${{ secrets.GITUSER }} git-password=${{ secrets.GITPASS }}
