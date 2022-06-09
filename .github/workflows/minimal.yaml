@@ -16,9 +16,6 @@ jobs:
   continuous-integration:
     runs-on: [self-hosted, python]
     steps:
-      - name: remove-preexisting-images
-        run: buildah rmi -a -f
-
       - name: setup-app-clone
         uses: actions/checkout@v3
 
