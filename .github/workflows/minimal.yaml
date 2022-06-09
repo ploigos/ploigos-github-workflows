@@ -16,14 +16,14 @@ jobs:
   continuous-integration:
     runs-on: [self-hosted, python]
     steps:
-      - name: remove-preexisting-images
-        run: buildah rmi -a -f
+#      - name: remove-preexisting-images
+#        run: buildah rmi -a -f
 
       - name: setup-app-clone
         uses: actions/checkout@v3
 
       - name: setup-workflow-step-runner
-        run: pip install --upgrade git+https://github.com/ploigos/ploigos-step-runner.git@feature/sh-logging
+        run: pip install --upgrade git+https://github.com/ploigos/ploigos-step-runner.git@main
 
       - name: ci-generate-metadata
         run: psr -s generate-metadata -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml
