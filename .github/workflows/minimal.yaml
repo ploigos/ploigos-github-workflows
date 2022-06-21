@@ -29,13 +29,13 @@ jobs:
         run: psr -s package -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml
 
       - name: ci-create-container-image
-        run: psr -s create-container-image -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/generated-psr
+        run: psr -s create-container-image -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml
 
       - name: ci-push-container-image-to-repository
-        run: psr -s push-container-image -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/generated-psr
+        run: psr -s push-container-image -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml
 
       - name: deploy-or-update-environment-dev
-        run: psr -s deploy -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/generated-psr --environment DEV --step-config argocd-password=${{ secrets.ARGOCDSECRET }} git-username=${{ secrets.GITUSER }} git-password=${{ secrets.GITPASS }}
+        run: psr -s deploy -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml --environment DEV --step-config argocd-password=${{ secrets.ARGOCDSECRET }} git-username=${{ secrets.GITUSER }} git-password=${{ secrets.GITPASS }}
 
       - name: deploy-or-update-environment-test
-        run: psr -s deploy -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/generated-psr --environment TEST --step-config argocd-password=${{ secrets.ARGOCDSECRET }} git-username=${{ secrets.GITUSER }} git-password=${{ secrets.GITPASS }}
+        run: psr -s deploy -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml --environment TEST --step-config argocd-password=${{ secrets.ARGOCDSECRET }} git-username=${{ secrets.GITUSER }} git-password=${{ secrets.GITPASS }}
