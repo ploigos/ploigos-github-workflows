@@ -35,7 +35,7 @@ jobs:
         run: psr -s push-container-image -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml
 
       - name: deploy-or-update-environment-dev
-        run: psr -s deploy -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml --environment DEV --step-config argocd-password=${{ secrets.ARGOCDSECRET }} git-username=${{ secrets.GITUSER }} git-password=${{ secrets.GITPASS }}
+        run: psr -s deploy -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml --environment DEV
 
       - name: deploy-or-update-environment-test
-        run: psr -s deploy -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml --environment TEST --step-config argocd-password=${{ secrets.ARGOCDSECRET }} git-username=${{ secrets.GITUSER }} git-password=${{ secrets.GITPASS }}
+        run: psr -s deploy -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml --environment TEST
