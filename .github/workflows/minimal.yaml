@@ -14,6 +14,7 @@ on:
         type: string
 jobs:
   continuous-integration:
+    if: github.ref_name == 'main' || startsWith(github.ref, 'refs/heads/feature/') || startsWith(github.ref, 'refs/heads/PR-')
     runs-on: [self-hosted, python]
     steps:
       - name: setup-app-clone
@@ -35,7 +36,9 @@ jobs:
         run: psr -s push-container-image -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml
 
       - name: deploy-or-update-environment-dev
+        if: startsWith(github.ref, 'refs/heads/feature/') || startsWith(github.ref, 'refs/heads/PR-')
         run: psr -s deploy -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml --environment DEV
 
       - name: deploy-or-update-environment-test
+        if: github.ref_name == 'main'
         run: psr -s deploy -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml --environment TEST
