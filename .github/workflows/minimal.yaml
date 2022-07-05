@@ -42,3 +42,6 @@ jobs:
       - name: deploy-or-update-environment-test
         if: github.ref_name == 'main'
         run: psr -s deploy -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml --environment TEST
+
+      - name: report
+        run: psr -s report -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml
