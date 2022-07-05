@@ -44,4 +44,5 @@ jobs:
         run: psr -s deploy -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml --environment TEST
 
       - name: report
+        if: always()
         run: psr -s report -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml
