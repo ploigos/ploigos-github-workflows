@@ -27,7 +27,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: working-dir
-          path: *
+          path: ${{ github.workspace }}
 
   continuous-integration:
     if: github.ref_name == 'main' || startsWith(github.ref, 'refs/heads/feature/') || startsWith(github.ref, 'refs/heads/PR-')
