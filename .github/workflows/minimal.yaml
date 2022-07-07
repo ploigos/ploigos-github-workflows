@@ -27,7 +27,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: working-dir
-          path: _work/
+          path: *
 
   continuous-integration:
     if: github.ref_name == 'main' || startsWith(github.ref, 'refs/heads/feature/') || startsWith(github.ref, 'refs/heads/PR-')
@@ -38,7 +38,6 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: working-dir
-          path: _work/
 
       - name: ci-generate-metadata
         run: psr -s generate-metadata -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml
