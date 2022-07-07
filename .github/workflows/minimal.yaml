@@ -20,9 +20,6 @@ jobs:
       - name: setup-app-clone
         uses: actions/checkout@v3
 
-      - name: setup-workflow-step-runner
-        run: pip install --upgrade git+https://github.com/ploigos/ploigos-step-runner.git@main
-
       - name: upload-artifacts
         uses: actions/upload-artifact@v1
         with:
