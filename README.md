@@ -35,7 +35,7 @@ This repository imeplements the [standard Ploigos CI/CD workflows](https://ploig
      deploy:
      - implementer: ArgoCDDeploy
        config:
-         argocd-api: argocd-api: argocd-server.devsecops.svc.cluster.local #REPLACE THIS VALUE
+         argocd-api: argocd-server.devsecops.svc.cluster.local #REPLACE THIS VALUE
          argocd-skip-tls: True
          deployment-config-repo: https://github.com/ploigos/spring-petclinic-ops.git #REPLACE THIS VALUE
          deployment-config-helm-chart-path: charts/spring-petclinic-deploy #REPLACE THIS VALUE
