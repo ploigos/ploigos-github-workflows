@@ -23,11 +23,23 @@ jobs:
       - name: setup-workflow-step-runner
         run: pip install --upgrade git+https://github.com/ploigos/ploigos-step-runner.git@main
 
+      - name: upload-artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: working-dir
+          path: /
+
   continuous-integration:
     if: github.ref_name == 'main' || startsWith(github.ref, 'refs/heads/feature/') || startsWith(github.ref, 'refs/heads/PR-')
     runs-on: [self-hosted, python]
     needs: setup
     steps:
+      - name: download-artifacts
+        uses: actions/download-artifact@v1
+        with:
+          name: working-dir
+          path: /
+
       - name: ci-generate-metadata
         run: psr -s generate-metadata -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml
 
