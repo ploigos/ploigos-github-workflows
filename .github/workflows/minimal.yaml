@@ -38,6 +38,7 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: working-dir
+          path: ${{ github.workspace }}
 
       - name: ci-generate-metadata
         run: psr -s generate-metadata -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml
