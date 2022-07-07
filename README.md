@@ -29,14 +29,13 @@ This repository imeplements the [standard Ploigos CI/CD workflows](https://ploig
      push-container-image:
      - implementer: Skopeo
        config:
-         destination-url: quay.io #REPLACE THIS VALUE
-         container-image-push-repository: aagreen/spring-petclinic #REPLACE THIS VALUE
-
+         destination-url: ploigos.jfrog.io #REPLACE THIS VALUE
+         container-image-push-repository: ploigos/spring-petclinic #REPLACE THIS VALUE
+     
      deploy:
      - implementer: ArgoCDDeploy
        config:
-         argocd-api: openshift-gitops-server-openshift-gitops.apps.swfocp.sandbox204.opentlc.com #REPLACE THIS VALUE
-         argocd-username: admin
+         argocd-api: argocd-api: argocd-server.devsecops.svc.cluster.local #REPLACE THIS VALUE
          argocd-skip-tls: True
          deployment-config-repo: https://github.com/ploigos/spring-petclinic-ops.git #REPLACE THIS VALUE
          deployment-config-helm-chart-path: charts/spring-petclinic-deploy #REPLACE THIS VALUE
@@ -49,6 +48,11 @@ This repository imeplements the [standard Ploigos CI/CD workflows](https://ploig
            deployment-config-helm-chart-environment-values-file: values-DEV.yaml
          TEST:
            deployment-config-helm-chart-environment-values-file: values-TEST.yaml
+     
+     report:
+     - implementer: ResultArtifactsArchive
+       config:
+       results-archive-destination-url: https://ploigos.jfrog.io/artifactory/results/ #REPLACE THIS VALUE
      ```
 
 2. Add a Containerfile instruction to your application repository and supply all needed values.
@@ -62,6 +66,8 @@ This repository imeplements the [standard Ploigos CI/CD workflows](https://ploig
      name: spring-petclinic #REPLACE THIS VALUE
 
      on:
+       schedule:
+       - cron: '0 0 * * *' # every night at 12:00AM UTC
        push:
        pull_request_target:
          types:
