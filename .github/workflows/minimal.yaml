@@ -13,15 +13,29 @@ on:
         default: .
         type: string
 jobs:
-  continuous-integration:
+  setup:
     if: github.ref_name == 'main' || startsWith(github.ref, 'refs/heads/feature/') || startsWith(github.ref, 'refs/heads/PR-')
     runs-on: [self-hosted, python]
     steps:
       - name: setup-app-clone
         uses: actions/checkout@v3
 
-      - name: setup-workflow-step-runner
-        run: pip install --upgrade git+https://github.com/ploigos/ploigos-step-runner.git@main
+      - name: upload-artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: working-dir
+          path: ${{ github.workspace }}
+
+  continuous-integration:
+    if: github.ref_name == 'main' || startsWith(github.ref, 'refs/heads/feature/') || startsWith(github.ref, 'refs/heads/PR-')
+    runs-on: [self-hosted, python]
+    needs: setup
+    steps:
+      - name: download-artifacts
+        uses: actions/download-artifact@v1
+        with:
+          name: working-dir
+          path: ${{ github.workspace }}
 
       - name: ci-generate-metadata
         run: psr -s generate-metadata -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml
@@ -35,6 +49,23 @@ jobs:
       - name: ci-push-container-image-to-repository
         run: psr -s push-container-image -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml
 
+      - name: upload-artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: working-dir
+          path: ${{ github.workspace }}
+
+  deploy:
+    if: github.ref_name == 'main' || startsWith(github.ref, 'refs/heads/feature/') || startsWith(github.ref, 'refs/heads/PR-')
+    runs-on: [self-hosted, python]
+    needs: continuous-integration
+    steps:
+      - name: download-artifacts
+        uses: actions/download-artifact@v1
+        with:
+          name: working-dir
+          path: ${{ github.workspace }}
+
       - name: deploy-or-update-environment-dev
         if: startsWith(github.ref, 'refs/heads/feature/') || startsWith(github.ref, 'refs/heads/PR-')
         run: psr -s deploy -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml --environment DEV
@@ -43,6 +74,22 @@ jobs:
         if: github.ref_name == 'main'
         run: psr -s deploy -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml --environment TEST
 
+      - name: upload-artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: working-dir
+          path: ${{ github.workspace }}
+
+  report:
+    if: always() && github.ref_name == 'main' || startsWith(github.ref, 'refs/heads/feature/') || startsWith(github.ref, 'refs/heads/PR-')
+    runs-on: [self-hosted, python]
+    needs: deploy
+    steps:
+      - name: download-artifacts
+        uses: actions/download-artifact@v1
+        with:
+          name: working-dir
+          path: ${{ github.workspace }}
+
       - name: report
-        if: always()
         run: psr -s report -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml
