@@ -54,12 +54,37 @@ This repository imeplements the [standard Ploigos CI/CD workflows](https://ploig
        config:
        results-archive-destination-url: https://ploigos.jfrog.io/artifactory/results/ #REPLACE THIS VALUE
      ```
-
-2. Add a Containerfile instruction to your application repository and supply all needed values.
+2. Add a psr-secrets.yml file that houses all of your secret values. As an example, the spring-petclinic app uses the psr-secrets.yml file within our github-runner helm chart [here](https://github.com/ploigos/openshift-actions-runner-chart/blob/main/templates/external-secrets.yaml). It's being provided secrets from a Hashicorp Vault server using the [External Secrets](https://external-secrets.io/) operator. Below is an example of the rendered kubernetes secret which then is mounted into the github runner pod -
+   ```yaml
+   step-runner-config:
+     config-decryptors:
+     - implementer: ObfuscationDefaults
+   global-defaults:
+     container-registries:
+       <registry0-url>:
+         username: <your-username>
+         password: <your-password>
+       <registry1-url>:
+         username: <your-username>
+         password: <your-password>
+   deploy:
+   - implementer: ArgoCDDeploy
+     config:
+       argocd-username: <your-username>
+       argocd-password: <your-password>
+       git-username: <your-username>
+       git-password: <your-password>
+   report:
+   - implementer: ResultArtifactsArchive
+     config:
+       results-archive-destination-username: <your-username>
+       results-archive-destination-password: <your-password>
+   ```
+4. Add a Containerfile instruction to your application repository and supply all needed values.
    * Copy example [Containerfile](https://github.com/ploigos/spring-petclinic/blob/main/Containerfile) to your application repository's root directory and update values according to your application.
-3. Create a GitOps repo that houses a helm chart to deploy your containerized application.
+5. Create a GitOps repo that houses a helm chart to deploy your containerized application.
    * Example GitOps Repo - https://github.com/ploigos/spring-petclinic-ops/
-4. Create a Github workflow to reference the minimal pipeline within this repository.
+6. Create a Github workflow to reference the minimal pipeline within this repository.
    * Copy example [main.yaml](https://github.com/ploigos/spring-petclinic/blob/main/.github/workflows/main.yaml) to your application repository's .github/workflows/ directory and update values according to your application. At minimum, the following fields should be updated -
      ```yaml
      ---
