@@ -80,11 +80,11 @@ This repository imeplements the [standard Ploigos CI/CD workflows](https://ploig
        results-archive-destination-username: <your-username>
        results-archive-destination-password: <your-password>
    ```
-4. Add a Containerfile instruction to your application repository and supply all needed values.
+3. Add a Containerfile instruction to your application repository and supply all needed values.
    * Copy example [Containerfile](https://github.com/ploigos/spring-petclinic/blob/main/Containerfile) to your application repository's root directory and update values according to your application.
-5. Create a GitOps repo that houses a helm chart to deploy your containerized application.
+4. Create a GitOps repo that houses a helm chart to deploy your containerized application.
    * Example GitOps Repo - https://github.com/ploigos/spring-petclinic-ops/
-6. Create a Github workflow to reference the minimal pipeline within this repository.
+5. Create a Github workflow to reference the minimal pipeline within this repository.
    * Copy example [main.yaml](https://github.com/ploigos/spring-petclinic/blob/main/.github/workflows/main.yaml) to your application repository's .github/workflows/ directory and update values according to your application. At minimum, the following fields should be updated -
      ```yaml
      ---
