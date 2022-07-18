@@ -1,0 +1,95 @@
+# This Github workflow will run the Report step of the Ploigos workflow.
+name: Full Workflow
+
+on:
+  workflow_call:
+    inputs:
+      verbose:
+        required: false
+        default: true
+        type: string
+      stepRunnerConfigDir:
+        required: false
+        default: .
+        type: string
+jobs:
+  setup:
+    if: github.ref_name == 'main' || startsWith(github.ref, 'refs/heads/feature/') || startsWith(github.ref, 'refs/heads/PR-')
+    runs-on: [self-hosted, python]
+    steps:
+      - name: setup-app-clone
+        uses: actions/checkout@v3
+
+      - name: upload-artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: working-dir
+          path: ${{ github.workspace }}
+
+  continuous-integration:
+    if: github.ref_name == 'main' || startsWith(github.ref, 'refs/heads/feature/') || startsWith(github.ref, 'refs/heads/PR-')
+    runs-on: [self-hosted, python]
+    needs: setup
+    steps:
+      - name: download-artifacts
+        uses: actions/download-artifact@v1
+        with:
+          name: working-dir
+          path: ${{ github.workspace }}
+
+      - name: ci-generate-metadata
+        run: psr -s generate-metadata -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml
+
+      - name: ci-package-application
+        run: psr -s package -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml
+
+      - name: ci-create-container-image
+        run: psr -s create-container-image -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml
+
+      - name: ci-push-container-image-to-repository
+        run: psr -s push-container-image -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml
+
+      - name: upload-artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: working-dir
+          path: ${{ github.workspace }}
+
+  deploy:
+    if: github.ref_name == 'main' || startsWith(github.ref, 'refs/heads/feature/') || startsWith(github.ref, 'refs/heads/PR-')
+    runs-on: [self-hosted, python]
+    needs: continuous-integration
+    steps:
+      - name: download-artifacts
+        uses: actions/download-artifact@v1
+        with:
+          name: working-dir
+          path: ${{ github.workspace }}
+
+      - name: deploy-or-update-environment-dev
+        if: startsWith(github.ref, 'refs/heads/feature/') || startsWith(github.ref, 'refs/heads/PR-')
+        run: psr -s deploy -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml --environment DEV
+
+      - name: deploy-or-update-environment-test
+        if: github.ref_name == 'main'
+        run: psr -s deploy -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml --environment TEST
+
+      - name: upload-artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: working-dir
+          path: ${{ github.workspace }}
+
+  report:
+    if: always() && github.ref_name == 'main' || startsWith(github.ref, 'refs/heads/feature/') || startsWith(github.ref, 'refs/heads/PR-')
+    runs-on: [self-hosted, python]
+    needs: deploy
+    steps:
+      - name: download-artifacts
+        uses: actions/download-artifact@v1
+        with:
+          name: working-dir
+          path: ${{ github.workspace }}
+
+      - name: report
+        run: psr -s report -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml
