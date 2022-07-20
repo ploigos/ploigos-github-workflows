@@ -46,6 +46,9 @@ jobs:
       - name: ci-package-application
         run: psr -s package -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml
 
+      - name: ci-push-application-to-repository
+        run: psr -s push-artifacts -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml
+
       - name: ci-create-container-image
         run: psr -s create-container-image -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml
 
