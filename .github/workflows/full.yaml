@@ -38,7 +38,7 @@ jobs:
           path: ${{ github.workspace }}
 
       - name: ci-generate-metadata
-        run: psr -s generate-metadata -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml
+        run: psr -s generate-metadata -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml
 
       - name: ci-run-unit-tests
         run: psr -s unit-test -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml
