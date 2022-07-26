@@ -40,6 +40,9 @@ jobs:
       - name: ci-generate-metadata
         run: psr -s generate-metadata -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml
 
+      - name: ci-tag-source
+        run: psr -s tag-source -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml
+
       - name: ci-run-unit-tests
         run: psr -s unit-test -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml
 
