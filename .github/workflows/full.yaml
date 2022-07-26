@@ -62,6 +62,7 @@ jobs:
         run: psr -s sign-container-image -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml
 
       - name: upload-artifacts
+        if: always() && github.ref_name == 'main' || startsWith(github.ref, 'refs/heads/feature/') || startsWith(github.ref, 'refs/heads/PR-')
         uses: actions/upload-artifact@v1
         with:
           name: working-dir
@@ -73,6 +74,7 @@ jobs:
     needs: continuous-integration
     steps:
       - name: download-artifacts
+        if: always() && github.ref_name == 'main' || startsWith(github.ref, 'refs/heads/feature/') || startsWith(github.ref, 'refs/heads/PR-')
         uses: actions/download-artifact@v1
         with:
           name: working-dir
@@ -87,6 +89,7 @@ jobs:
         run: psr -s deploy -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml --environment TEST
 
       - name: upload-artifacts
+        if: always() && github.ref_name == 'main' || startsWith(github.ref, 'refs/heads/feature/') || startsWith(github.ref, 'refs/heads/PR-')
         uses: actions/upload-artifact@v1
         with:
           name: working-dir
@@ -98,6 +101,7 @@ jobs:
     needs: deploy
     steps:
       - name: download-artifacts
+        if: always() && github.ref_name == 'main' || startsWith(github.ref, 'refs/heads/feature/') || startsWith(github.ref, 'refs/heads/PR-')
         uses: actions/download-artifact@v1
         with:
           name: working-dir
