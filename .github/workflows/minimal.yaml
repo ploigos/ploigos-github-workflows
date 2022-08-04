@@ -38,10 +38,10 @@ jobs:
           path: ${{ github.workspace }}
 
       - name: ci-generate-metadata
-        run: psr -s generate-metadata -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml
+        run: psr -s generate-metadata -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml
 
       - name: ci-package-application
-        run: psr -s package -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml
+        run: psr -s package -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml
 
       - name: ci-create-container-image
         run: psr -s create-container-image -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml

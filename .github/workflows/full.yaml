@@ -40,16 +40,16 @@ jobs:
           path: ${{ github.workspace }}
 
       - name: ci-generate-metadata
-        run: psr -s generate-metadata -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml
+        run: psr -s generate-metadata -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml
 
       - name: ci-tag-source
         run: psr -s tag-source -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml
 
       - name: ci-run-unit-tests
-        run: psr -s unit-test -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml
+        run: psr -s unit-test -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml
 
       - name: ci-package-application
-        run: psr -s package -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml
+        run: psr -s package -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml
 
       - name: ci-push-application-to-repository
         run: psr -s push-artifacts -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml
