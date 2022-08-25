@@ -57,6 +57,9 @@ jobs:
       - name: ci-create-container-image
         run: psr -s create-container-image -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml
 
+      - name: ci-static-image-scan-compliance
+        run: psr -s container-image-static-compliance-scan -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml
+
       - name: ci-push-container-image-to-repository
         run: psr -s push-container-image -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml
 
