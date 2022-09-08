@@ -15,7 +15,7 @@ on:
 jobs:
   setup:
     if: github.ref_name == 'main' || startsWith(github.ref, 'refs/heads/feature/') || startsWith(github.ref, 'refs/heads/PR-')
-    runs-on: [self-hosted, python]
+    runs-on: [self-hosted, dotnet]
     steps:
       - name: setup-app-clone
         uses: actions/checkout@v3
@@ -28,7 +28,7 @@ jobs:
 
   continuous-integration:
     if: github.ref_name == 'main' || startsWith(github.ref, 'refs/heads/feature/') || startsWith(github.ref, 'refs/heads/PR-')
-    runs-on: [self-hosted, python]
+    runs-on: [self-hosted, dotnet]
     needs: setup
     steps:
       - name: download-artifacts
@@ -57,7 +57,7 @@ jobs:
 
   deploy:
     if: github.ref_name == 'main' || startsWith(github.ref, 'refs/heads/feature/') || startsWith(github.ref, 'refs/heads/PR-')
-    runs-on: [self-hosted, python]
+    runs-on: [self-hosted, dotnet]
     needs: continuous-integration
     steps:
       - name: download-artifacts
@@ -82,7 +82,7 @@ jobs:
 
   report:
     if: always() && github.ref_name == 'main' || startsWith(github.ref, 'refs/heads/feature/') || startsWith(github.ref, 'refs/heads/PR-')
-    runs-on: [self-hosted, python]
+    runs-on: [self-hosted, dotnet]
     needs: deploy
     steps:
       - name: download-artifacts
