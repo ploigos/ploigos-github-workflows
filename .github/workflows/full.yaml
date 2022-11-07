@@ -96,6 +96,10 @@ jobs:
         if: startsWith(github.ref, 'refs/heads/feature/') || startsWith(github.ref, 'refs/heads/PR-')
         run: psr -s validate-environment-configuration -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml --environment DEV
 
+      - name: user-acceptance-tests-dev
+        if: startsWith(github.ref, 'refs/heads/feature/') || startsWith(github.ref, 'refs/heads/PR-')
+        run: psr -s uat -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml --environment DEV
+
       - name: deploy-or-update-environment-test
         if: github.ref_name == 'main'
         run: psr -s deploy -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml --environment TEST
@@ -103,6 +107,10 @@ jobs:
       - name: validate-environment-configuration-test
         if: github.ref_name == 'main'
         run: psr -s validate-environment-configuration -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml --environment TEST
+
+      - name: user-acceptance-tests-test
+        if: github.ref_name == 'main'
+        run: psr -s uat -c ${{ inputs.stepRunnerConfigDir }}/psr.yaml /ploigos/psr-secrets.yml --environment TEST
 
       - name: upload-artifacts
         if: always() && github.ref_name == 'main' || startsWith(github.ref, 'refs/heads/feature/') || startsWith(github.ref, 'refs/heads/PR-')
